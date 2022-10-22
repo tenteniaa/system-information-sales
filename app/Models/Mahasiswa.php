@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Mahasiswa extends Model
+{
+    use HasFactory;
+    protected $table = 'mahasiswa';
+    protected $primaryKey = 'id';
+    protected $fillable = ['nim', 'nama', 'alamat'];
+
+    public function scopeFilter($query)
+    {
+        if(request('search')){
+            return $query->where('nama', 'like', '%'. request('search').'%')
+                         ->orWhere('nim', 'like', '%'. request('search').'%')
+                         ->orWhere('alamat', 'like', '%'. request('search').'%');
+        }
+    }
+}
