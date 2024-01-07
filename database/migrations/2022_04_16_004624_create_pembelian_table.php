@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pembelian', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_pembelian');
             $table->bigInteger('id_supplier');
             $table->bigInteger('id_produk');
             $table->integer('jumlah');

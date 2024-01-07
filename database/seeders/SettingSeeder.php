@@ -16,8 +16,8 @@ class SettingSeeder extends Seeder
     public function run()
     {
         DB::table('setting')->insert([
-            'id' => 1,
-            'nama_perusahaan' => 'Kelompok 6',
+            'id_setting' => 1,
+            'nama_perusahaan' => 'Batman',
             'alamat' => 'Gotham City',
             'telepon' => '08111111111',
             'tipe_nota' => 1,

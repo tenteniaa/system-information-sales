@@ -13,7 +13,7 @@
   <div class="content mt-4 mb-4">
       <div class="card col-md-7 mx-auto col-sm-12">
         <div class="card-body">
-          <form action="{{ route('supplier.update', ['id' => $supplier->id]) }}" method="post">
+          <form action="{{ route('supplier.update', ['id' => $supplier->id_supplier]) }}" method="post">
             @csrf
             <label>Nama</label></br>
             <input type="text" name="nama" id="nama" value="{{$supplier->nama}}" class="form-control"></br>

@@ -7,6 +7,7 @@
         font-size: 5em;
         text-align: center;
         height: 100px;
+        color: #5d5d5d;
     }
 
     .tampil-terbilang {
@@ -29,7 +30,7 @@
 @endpush
 
 @section('konten')
-<div class="row">
+<div class="row bg-white py-3" style="border-radius: 10px">
     <div class="col-lg-12">
         <div class="box">
             <div class="box-body">
@@ -37,12 +38,12 @@
                 <form class="form-produk">
                     @csrf
                     <div class="form-group row">
-                        <label for="id_produk" class="col-lg-2">Kode Produk</label>
+                        <label for="kode_produk" class="col-lg-2 d-flex align-items-center">Kode Produk</label>
                         <div class="col-lg-5">
                             <div class="input-group">
                                 <input type="hidden" name="id_penjualan" id="id_penjualan" value="{{ $id_penjualan }}">
-                                <input type="hidden" name="id" id="id">
-                                <input type="text" class="form-control" name="id_produk" id="id_produk">
+                                <input type="hidden" name="id_produk" id="id_produk">
+                                <input type="text" class="form-control" name="kode_produk" id="kode_produk">
                                 <span class="input-group-btn">
                                     <button onclick="tampilProduk()" class="btn btn-info btn-flat" type="button"><i class="fa fa-arrow-right"></i></button>
                                 </span>
@@ -76,7 +77,7 @@
                             <input type="hidden" name="total" id="total">
                             <input type="hidden" name="total_item" id="total_item">
                             <input type="hidden" name="bayar" id="bayar">
-                            <input type="hidden" name="id_member" id="id_member" value="{{ $pelangganSelected->id_member }}">
+                            <input type="hidden" name="id_member" id="id_member" value="{{ $memberSelected->id_member }}">
 
                             <div class="form-group row">
                                 <label for="totalrp" class="col-lg-2 control-label">Total</label>
@@ -88,7 +89,7 @@
                                 <label for="kode_member" class="col-lg-2 control-label">Member</label>
                                 <div class="col-lg-8">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="kode_member" value="{{ $pelangganSelected->kode_member }}">
+                                        <input type="text" class="form-control" id="kode_member" value="{{ $memberSelected->kode_member }}">
                                         <span class="input-group-btn">
                                             <button onclick="tampilMember()" class="btn btn-info btn-flat" type="button"><i class="fa fa-arrow-right"></i></button>
                                         </span>
@@ -99,7 +100,7 @@
                                 <label for="diskon" class="col-lg-2 control-label">Diskon</label>
                                 <div class="col-lg-8">
                                     <input type="number" name="diskon" id="diskon" class="form-control" 
-                                        value="{{ ! empty($pelangganSelected->id_member) ? $diskon : 0 }}" 
+                                        value="{{ ! empty($memberSelected->id_member) ? $diskon : 0 }}" 
                                         readonly>
                                 </div>
                             </div>
@@ -145,14 +146,16 @@
         $('body').addClass('sidebarToggle');
 
         table = $('.table-penjualan').DataTable({
+            responsive: true,
             processing: true,
+            serverSide: true,
             autoWidth: false,
             ajax: {
                 url: '{{ route('transaksi.data', $id_penjualan) }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'id_produk'},
+                {data: 'kode_produk'},
                 {data: 'nama_produk'},
                 {data: 'harga_jual'},
                 {data: 'jumlah'},
@@ -194,10 +197,7 @@
                 })
                 .done(response => {
                     $(this).on('mouseout', function () {
-                        //console.log("Reload");
                         table.ajax.reload(() => loadForm($('#diskon').val()));
-                        //table.ajax.reload();
-                        //print("Refreshing table");
                     });
                 })
                 .fail(errors => {
@@ -238,8 +238,8 @@
     }
 
     function pilihProduk(id, kode) {
-        $('#id').val(id);
-        $('#id_produk').val(kode);
+        $('#id_produk').val(id);
+        $('#kode_produk').val(kode);
         hideProduk();
         tambahProduk();
     }
@@ -247,7 +247,7 @@
     function tambahProduk() {
         $.post('{{ route('transaksi.store') }}', $('.form-produk').serialize())
             .done(response => {
-                $('#id_produk').focus();
+                $('#kode_produk').focus();
                 table.ajax.reload(() => loadForm($('#diskon').val()));
             })
             .fail(errors => {

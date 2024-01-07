@@ -23,7 +23,7 @@
             <select name="id_kategori" id="id_kategori" class="form-control select2" style="width:100%">
               <option disable value>Pilih Kategori</option>
               @foreach ($kategori as $item)
-              <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+              <option value="{{ $item->id_kategori }}">{{ $item->nama_kategori }}</option>
               @endforeach
             </select><br>
             <label>Harga Beli</label></br>

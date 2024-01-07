@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use App\Exports\SupplierExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 
 class SupplierController extends Controller
 {

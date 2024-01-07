@@ -68,11 +68,11 @@
                     <span>Supplier</span></a>
             </li>
 
-            <!-- Nav Item - Pelanggan -->
+            <!-- Nav Item - Member -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('pelanggan.index') }}">
+                <a class="nav-link" href="{{ route('member.index') }}">
                     <i class="fas fa-fw fa-id-card"></i>
-                    <span>Pelanggan</span></a>
+                    <span>Member</span></a>
             </li>
 
              <!-- Nav Item - Kategori -->
@@ -417,18 +417,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Are you sure you want to logout?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('Yes') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                          @csrf

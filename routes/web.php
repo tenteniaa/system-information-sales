@@ -10,7 +10,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PenjualanDetailController;
 use App\Http\Controllers\PembelianController;
@@ -29,14 +29,14 @@ use App\Http\Controllers\SettingController;
 */
 Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
-Route::get('/pelanggan-create', [PelangganController::class, 'create'])->name('pelanggan.create');
-Route::post('/pelanggan-store', [PelangganController::class, 'store'])->name('pelanggan.store');
-Route::get('/pelanggan-edit/{id}', [PelangganController::class, 'edit'])->name('pelanggan.edit');
-Route::post('/pelanggan-update/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
-Route::get('/pelanggan-show/{id}', [PelangganController::class, 'show'])->name('pelanggan.show');
-Route::post('/pelanggan-destroy/{id}', [PelangganController::class, 'destroy'])->name('pelanggan.destroy');
-Route::get('/exportpelanggan', [PelangganController::class, 'export'])->name('pelanggan.export');
+Route::get('/member', [MemberController::class, 'index'])->name('member.index');
+Route::get('/member-create', [MemberController::class, 'create'])->name('member.create');
+Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');
+Route::get('/member-edit/{id}', [MemberController::class, 'edit'])->name('member.edit');
+Route::post('/member-update/{id}', [MemberController::class, 'update'])->name('member.update');
+Route::get('/member-show/{id}', [MemberController::class, 'show'])->name('member.show');
+Route::post('/member-destroy/{id}', [MemberController::class, 'destroy'])->name('member.destroy');
+Route::get('/exportmember', [MemberController::class, 'export'])->name('member.export');
 
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/kategori-create', [KategoriController::class, 'create'])->name('kategori.create');
@@ -80,8 +80,6 @@ Route::controller(GoogleController::class)->group(function(){
 Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian.index');
 Route::get('/pembelian-create', [PembelianController::class, 'create'])->name('pembelian.create');
 Route::post('/pembelian-store', [PembelianController::class, 'store'])->name('pembelian.store');
-Route::get('/pembelian-edit/{id}', [PembelianController::class, 'edit'])->name('pembelian.edit');
-Route::post('/pembelian-update/{id}', [PembelianController::class, 'update'])->name('pembelian.update');
 Route::get('/pembelian-show/{id}', [PembelianController::class, 'show'])->name('pembelian.show');
 Route::post('/pembelian-destroy/{id}', [PembelianController::class, 'destroy'])->name('pembelian.destroy');
 Route::get('/exportpembelian', [PembelianController::class, 'export'])->name('pembelian.export');

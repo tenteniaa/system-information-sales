@@ -49,9 +49,9 @@
                                 <td>{{ $item->telepon  }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>
-                                    <a href="{{route('supplier.show', $item->id)}}" title="show" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                                    <a href="{{route('supplier.edit', $item->id)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                    <a href="{{route('supplier.show', $item->id_supplier)}}" title="show" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                    <a href="{{route('supplier.edit', $item->id_supplier)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id_supplier }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -66,7 +66,7 @@
 
 <!-- Modal Delete -->
 @foreach ($supplier as $item)
-<div class="modal fade" id="deleteModal-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal-{{ $item->id_supplier }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
@@ -78,7 +78,7 @@
           <div class="modal-body">Yakin ingin menghapus data supplier <span style="font-weight: 700">{{ Str::limit($item->nama, 30) }}</span>?</div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-              <form action="{{ route('supplier.destroy', $item->id) }}" method="POST">
+              <form action="{{ route('supplier.destroy', $item->id_supplier) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary border-0">Ya</button>
               </form>

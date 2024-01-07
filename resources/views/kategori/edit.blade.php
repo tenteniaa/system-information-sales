@@ -13,7 +13,7 @@
   <div class="content mt-4 mb-4">
       <div class="card col-md-7 mx-auto col-sm-12">
         <div class="card-body">
-          <form action="{{ route('kategori.update', ['id' => $kategori->id]) }}" method="post">
+          <form action="{{ route('kategori.update', ['id' => $kategori->id_kategori]) }}" method="post">
             @csrf
             <label>Nama Kategori</label></br>
             <input type="text" name="nama_kategori" value="{{$kategori->nama_kategori}}" class="form-control"></br>

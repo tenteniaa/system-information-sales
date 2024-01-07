@@ -51,9 +51,8 @@
                                     <td>{{ $item->bayar }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>
-                                        <a href="{{route('pembelian.show', $item->id)}}" title="show" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                                        <a href="{{route('pembelian.edit', $item->id)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{route('pembelian.show', $item->id_pembelian)}}" title="show" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id_pembelian }}"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,7 +67,7 @@
 
 <!-- Modal Delete -->
 @foreach ($pembelian as $item)
-<div class="modal fade" id="deleteModal-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal-{{ $item->id_pembelian }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
@@ -80,7 +79,7 @@
           <div class="modal-body">Yakin ingin menghapus data pembelian?</div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-              <form action="{{ route('pembelian.destroy', $item->id) }}" method="POST">
+              <form action="{{ route('pembelian.destroy', $item->id_pembelian) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary border-0">Ya</button>
               </form>

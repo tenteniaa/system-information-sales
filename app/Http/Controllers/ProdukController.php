@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use App\Models\Kategori;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use App\Exports\ProdukExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
@@ -53,7 +52,11 @@ class ProdukController extends Controller
             'stok' => 'required',
         ]);
 
+        $data = Produk::latest()->first() ?? new Produk();
+        $kode_produk = (int) $data->id_produk +1;
+
         $data = new Produk();
+        $data->kode_produk = 'P'. tambah_nol_didepan($kode_produk, 6);
         $data->id_kategori = $request->id_kategori;
         $data->nama_produk = $request->nama_produk;
         $data->merk = $request->merk;

@@ -8,7 +8,6 @@ use App\Models\Produk;
 use App\Models\Setting;
 use App\Exports\PenjualanExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +17,7 @@ class PenjualanController extends Controller
     {
         return Excel::download(new PenjualanExport, 'penjualan.xlsx');
     }
-
+    
     public function index()
     {
         return view('penjualan.index');
@@ -26,7 +25,7 @@ class PenjualanController extends Controller
 
     public function data()
     {
-        $penjualan = Penjualan::with('pelanggan')->orderBy('id_penjualan', 'desc')->get();
+        $penjualan = Penjualan::with('member')->orderBy('id_penjualan', 'desc')->get();
 
         return datatables()
             ->of($penjualan)
@@ -44,8 +43,8 @@ class PenjualanController extends Controller
                 return tanggal_indonesia($penjualan->created_at, false);
             })
             ->addColumn('kode_member', function ($penjualan) {
-                $pelanggan = $penjualan->pelanggan->kode_member ?? '';
-                return '<span class="badge badge-success">'. $pelanggan .'</span>';
+                $member = $penjualan->member->kode_member ?? '';
+                return '<span class="label label-success">'. $member .'</spa>';
             })
             ->editColumn('diskon', function ($penjualan) {
                 return $penjualan->diskon . '%';
@@ -112,8 +111,8 @@ class PenjualanController extends Controller
         return datatables()
             ->of($detail)
             ->addIndexColumn()
-            ->addColumn('id_produk', function ($detail) {
-                return '<span class="badge badge-success">'. $detail->produk->id_produk .'</span>';
+            ->addColumn('kode_produk', function ($detail) {
+                return '<span class="label label-success">'. $detail->produk->kode_produk .'</span>';
             })
             ->addColumn('nama_produk', function ($detail) {
                 return $detail->produk->nama_produk;
@@ -127,7 +126,7 @@ class PenjualanController extends Controller
             ->addColumn('subtotal', function ($detail) {
                 return 'Rp. '. format_uang($detail->subtotal);
             })
-            ->rawColumns(['id_produk'])
+            ->rawColumns(['kode_produk'])
             ->make(true);
     }
 
@@ -170,5 +169,4 @@ class PenjualanController extends Controller
         
         return view('penjualan.nota_kecil', compact('setting', 'penjualan', 'detail'));
     }
-
 }

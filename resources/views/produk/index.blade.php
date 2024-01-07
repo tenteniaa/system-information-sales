@@ -35,9 +35,9 @@
                         <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Kode Produk</th>
                             <th>Nama</th>
                             <th>Merk</th>
-                            <th>Kategori</th>
                             <th>Stok</th>
                             <th>Aksi</th>
                         </tr>
@@ -46,14 +46,14 @@
                         @foreach($produk as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td><label class="badge badge-success">{{ $item->kode_produk }}</label></td>
                                 <td>{{ $item->nama_produk }}</td>
                                 <td>{{ $item->merk }}</td>
-                                <td>{{ $item->kategori->nama_kategori ?? 'lainnya'}}</td>
                                 <td>{{ $item->stok }}</td>
                                 <td>
-                                    <a href="{{route('produk.show', $item->id)}}" title="show" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                                    <a href="{{route('produk.edit', $item->id)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                    <a href="{{route('produk.show', $item->id_produk)}}" title="show" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                    <a href="{{route('produk.edit', $item->id_produk)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id_produk }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -68,7 +68,7 @@
 
 <!-- Modal Delete -->
 @foreach ($produk as $item)
-<div class="modal fade" id="deleteModal-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal-{{ $item->id_produk }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
@@ -80,7 +80,7 @@
           <div class="modal-body">Yakin ingin menghapus data produk <span style="font-weight: 700">{{ Str::limit($item->merk, 30) }}</span>?</div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-              <form action="{{ route('produk.destroy', $item->id) }}" method="POST">
+              <form action="{{ route('produk.destroy', $item->id_produk) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary border-0">Ya</button>
               </form>

@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:kategori-list|kategori-create|kategori-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:kategori-create', ['only' => ['create','store']]);
+         $this->middleware('permission:kategori-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         return view('kategori.index',[

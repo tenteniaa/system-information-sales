@@ -9,8 +9,8 @@ class Supplier extends Model
 {
     use HasFactory;
     protected $table = 'supplier';
+    protected $primaryKey = 'id_supplier';
     protected $guarded = [];
-    protected $fillable = ['nama', 'alamat', 'telepon'];
 
     public function scopeFilter($query)
     {

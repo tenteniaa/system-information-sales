@@ -44,8 +44,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_kategori }}</td>
                                 <td>
-                                    <a href="{{route('kategori.edit', $item->id)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                                    <a href="{{route('kategori.edit', $item->id_kategori)}}" title="edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ $item->id_kategori }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -60,7 +60,7 @@
 
 <!-- Modal Delete -->
 @foreach ($kategori as $item)
-<div class="modal fade" id="deleteModal-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal-{{ $item->id_kategori }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
@@ -72,7 +72,7 @@
           <div class="modal-body">Yakin ingin menghapus data kategori <span style="font-weight: 700">{{ Str::limit($item->nama_kategori, 30) }}</span>?</div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-              <form action="{{ route('kategori.destroy', $item->id) }}" method="POST">
+              <form action="{{ route('kategori.destroy', $item->id_kategori) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary border-0">Ya</button>
               </form>

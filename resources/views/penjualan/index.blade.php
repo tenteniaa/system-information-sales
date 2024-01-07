@@ -2,20 +2,18 @@
 
 @section('konten')
 
-<ul class="nav nav-tabs" role="tablist">
-    <div class="container-fluid">
-        <div class="col-sm-12">
-            <a href="{{ route('exportpenjualan') }}" style="float:right" class="btn btn-primary"><i class="fa fa-table"></i> Export</a>
-            <h3><b class="row">Daftar Transaksi Penjualan</b></h3>
-        </div>
+<div class="d-flex align-items-center justify-content-between border-bottom">
+    <h2><b>Daftar Transaksi Penjualan</b></h2>
+    <div class="btn-wrapper">
+        <a href="{{ route('exportpenjualan') }}" class="btn btn-primary"><i class="fas fa-fw fa-table"></i> Export</a>
     </div>
-</ul></br>
+</div></br>
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="box">
-            <div class="box-body table-responsive">
-                <table class="table table-stiped table-bordered table-penjualan">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-penjualan">
                     <thead>
                         <th width="5%">No</th>
                         <th>Tanggal</th>
@@ -50,7 +48,11 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'tanggal'},
-                {data: 'kode_member'},
+                {data: 'kode_member',
+                 render: function (data) {
+                     return '<label class="badge badge-success">' + data + '</label>';
+                 }
+                },
                 {data: 'total_item'},
                 {data: 'total_harga'},
                 {data: 'diskon'},
@@ -66,7 +68,11 @@
             dom: 'Brt',
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'id_produk'},
+                {data: 'kode_produk',
+                 render: function (data) {
+                     return '<label class="badge badge-success">' + data + '</label>';
+                 }
+                },
                 {data: 'nama_produk'},
                 {data: 'harga_jual'},
                 {data: 'jumlah'},

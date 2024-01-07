@@ -19,14 +19,14 @@
             <select name="id_supplier" id="id_supplier" class="form-control select2" style="width:100%">
                 <option disable value>Pilih Supplier</option>
                 @foreach ($supplier as $item)
-                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                    <option value="{{ $item->id_supplier }}">{{ $item->nama }}</option>
                 @endforeach
             </select><br>
             <label>Pilih Produk</label></br>
             <select name="id_produk" id="id_produk" class="form-control select2" style="width:100%">
                 <option disable value>Pilih Produk</option>
                 @foreach ($produk as $item)
-                    <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
+                    <option value="{{ $item->id_produk }}">{{ $item->nama_produk }}</option>
                 @endforeach
             </select><br>
             <label>Jumlah</label></br>

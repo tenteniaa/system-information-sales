@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategori;
-use App\Models\Pelanggan;
+use App\Models\Member;
 use App\Models\Produk;
 use App\Models\Supplier;
 
@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $kategori = Kategori::count();
         $produk = Produk::count();
         $supplier = Supplier::count();
-        $pelanggan = Pelanggan::count();
-        return view ('dashboard.index', compact('kategori', 'produk', 'supplier', 'pelanggan'));
+        $member = Member::count();
+        return view ('dashboard.index', compact('kategori', 'produk', 'supplier', 'member'));
     }
 }

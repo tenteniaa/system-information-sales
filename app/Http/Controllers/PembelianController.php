@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Pembelian;
 use App\Models\Produk;
 use App\Models\Supplier;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use App\Exports\PembelianExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
 
 class PembelianController extends Controller
 {

@@ -13,7 +13,7 @@
   <div class="content mt-4 mb-4">
       <div class="card col-md-7 mx-auto col-sm-12">
         <div class="card-body">
-          <form action="{{ route('produk.update', ['id' => $produk->id]) }}" method="post">
+          <form action="{{ route('produk.update', ['id' => $produk->id_produk]) }}" method="post">
             @csrf
             <label>Nama Produk</label></br>
             <input type="text" name="nama_produk" id="nama_produk" value="{{$produk->nama_produk}}" class="form-control"></br>
@@ -21,7 +21,7 @@
             <select name="id_kategori" id="id_kategori" class="form-control select2" style="width:100%">
               <option disable value>Pilih Kategori</option>
               @foreach ($kategori as $item)
-              <option value="{{ $item->id }}" {{ $item->id == $produk->id_kategori ? 'selected' : '' }}>{{ $item->nama_kategori }}</option>
+              <option value="{{ $item->id_kategori }}" {{ $item->id_kategori == $produk->id_kategori ? 'selected' : '' }}>{{ $item->nama_kategori }}</option>
               @endforeach
             </select><br>
             <label>Merk</label></br>
