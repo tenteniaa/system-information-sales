@@ -19,8 +19,7 @@ class Produk extends Model
     public function scopeFilter($query)
     {
         if(request('search')){
-            return $query->where('id_produk', 'like', '%'. request('search').'%')
-                         ->orWhere('nama_produk', 'like', '%'. request('search').'%')
+            return $query->where('nama_produk', 'like', '%'. request('search').'%')
                          ->orWhere('id_kategori', 'like', '%'. request('search').'%')
                          ->orWhere('merk', 'like', '%'. request('search').'%')
                          ->orWhere('harga_beli', 'like', '%'. request('search').'%')

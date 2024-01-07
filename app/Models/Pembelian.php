@@ -23,8 +23,7 @@ class Pembelian extends Model
     public function scopeFilter($query)
     {
         if(request('search')){
-            return $query->where('id_pembelian', 'like', '%'. request('search').'%')
-                         ->orWhere('id_supplier', 'like', '%'. request('search').'%')
+            return $query->where('id_supplier', 'like', '%'. request('search').'%')
                          ->orWhere('id_produk', 'like', '%'. request('search').'%')
                          ->orWhere('jumlah', 'like', '%'. request('search').'%')
                          ->orWhere('diskon', 'like', '%'. request('search').'%')

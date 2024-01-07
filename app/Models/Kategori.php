@@ -19,8 +19,7 @@ class Kategori extends Model
     public function scopeFilter($query)
     {
         if(request('search')){
-            return $query->where('id_kategori', 'like', '%'. request('search').'%')
-                         ->orWhere('nama_kategori', 'like', '%'. request('search').'%');
+            return $query->where('nama_kategori', 'like', '%'. request('search').'%');
         }
     }
 }
