@@ -3,6 +3,17 @@
 @section('konten')
 <div class="row">
     <div class="col-lg-12">
+        <div class="d-flex align-items-center justify-content-between border-bottom mb-3">
+            <h2><b>Setting</b></h2>
+            <div class="btn-wrapper">
+                <a class="btn btn-primary" style="pointer-events: none;"><i class="fas fa-fw fa-cogs"></i></a>
+            </div>
+        </div>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
         <div class="box">
             <form action="{{ route('setting.update') }}" method="post" class="form-setting" data-toggle="validator" enctype="multipart/form-data">
                 @csrf
@@ -33,27 +44,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="path_logo" class="col-lg-2 control-label">Logo Perusahaan</label>
-                        <div class="col-lg-4">
-                            <input type="file" name="path_logo" class="form-control" id="path_logo"
-                                onchange="preview('.tampil-logo', this.files[0])">
+                        <label for="tipe_nota" class="col-lg-2 control-label">Tipe Nota</label>
+                        <div class="col-lg-2">
+                            <select name="tipe_nota" class="form-control" id="tipe_nota" required>
+                                <option value="1">Nota Kecil</option>
+                                <option value="2">Nota Besar</option>
+                            </select>
                             <span class="help-block with-errors"></span>
-                            <br>
-                            <div class="tampil-logo"></div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="path_kartu_member" class="col-lg-2 control-label">Kartu Member</label>
-                        <div class="col-lg-4">
-                            <input type="file" name="path_kartu_member" class="form-control" id="path_kartu_member"
-                                onchange="preview('.tampil-kartu-member', this.files[0], 300)">
-                            <span class="help-block with-errors"></span>
-                            <br>
-                            <div class="tampil-kartu-member"></div>
                         </div>
                     </div>
                 </div>
-                <div class="box-footer text-right">
+                <div class="box-footer text-left">
                     <button class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Simpan Perubahan</button>
                 </div>
             </form>
@@ -99,6 +100,7 @@
                 $('[name=nama_perusahaan]').val(response.nama_perusahaan);
                 $('[name=telepon]').val(response.telepon);
                 $('[name=alamat]').val(response.alamat);
+                $('[name=tipe_nota]').val(response.tipe_nota);
                 $('title').text(response.nama_perusahaan + ' | Pengaturan');
                 
                 let words = response.nama_perusahaan.split(' ');
@@ -108,10 +110,6 @@
                 });
                 $('.logo-mini').text(word);
                 $('.logo-lg').text(response.nama_perusahaan);
-
-                $('.tampil-logo').html(`<img src="{{ url('/') }}${response.path_logo}" width="200">`);
-                $('.tampil-kartu-member').html(`<img src="{{ url('/') }}${response.path_kartu_member}" width="300">`);
-                $('[rel=icon]').attr('href', `{{ url('/') }}/${response.path_logo}`);
             })
             .fail(errors => {
                 alert('Tidak dapat menampilkan data');

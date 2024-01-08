@@ -97,7 +97,7 @@ Route::get('/exportpenjualan', [PenjualanController::class, 'penjualanexport'])-
 
 Route::get('/transaksi/{id}/data', [PenjualanDetailController::class, 'data'])->name('transaksi.data');
 Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [PenjualanDetailController::class, 'loadForm'])->name('transaksi.load_form');
-Route::resource('/transaksi', PenjualanDetailController::class);
+Route::resource('/transaksi', PenjualanDetailController::class)->except('create', 'show', 'edit');
 
 Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
 Route::get('/setting/first', [SettingController::class, 'show'])->name('setting.show');

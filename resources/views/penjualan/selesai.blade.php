@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="box-footer">
-                <button class="btn btn-warning btn-flat" onclick="notaKecil('{{ route('transaksi.nota_kecil') }}', 'Nota Kecil')">Cetak Ulang Nota</button>
+                <button class="btn btn-warning btn-flat" onclick="notaKecil('{{ route('transaksi.nota_kecil') }}', 'Nota Kecil')">Cetak Nota</button>
                 <a href="{{ route('transaksi.baru') }}" class="btn btn-info btn-flat">Transaksi Baru</a>
                 <a href="{{ route('penjualan.index') }}" class="btn btn-primary btn-flat">Daftar Transaksi</a>
             </div>

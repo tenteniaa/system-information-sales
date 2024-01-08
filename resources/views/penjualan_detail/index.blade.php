@@ -1,6 +1,5 @@
 @extends('dashboard.sidebar')
 
-
 @push('css')
 <style>
     .tampil-bayar {
